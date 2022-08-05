@@ -26,6 +26,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 import Places from './src/screens/Places';
+import { Provider } from 'react-redux';
+import store from './src/redux/store';
 
 const App: () => Node = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -36,10 +38,12 @@ const App: () => Node = () => {
   };
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <Places />
-    </SafeAreaView>
+    <Provider store={store}>
+      <SafeAreaView style={backgroundStyle}>
+        <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+        <Places />
+      </SafeAreaView>
+    </Provider>
   );
 };
 
